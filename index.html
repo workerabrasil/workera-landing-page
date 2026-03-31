@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workera - Limpeza Profissional e Ágil</title>
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        workera: {
+                            light: '#e0f2fe', // sky-100
+                            DEFAULT: '#0ea5e9', // sky-500
+                            dark: '#0369a1', // sky-700
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="font-sans text-gray-800 antialiased bg-slate-50">
+
+    <!-- Header -->
+    <header class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="text-2xl font-bold tracking-tighter text-workera-dark flex items-center gap-2">
+                <i class="ph ph-sparkle text-workera"></i> Workera
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex space-x-8 items-center font-medium">
+                <a href="#servicos" class="text-gray-600 hover:text-workera transition-colors">Serviços</a>
+                <a href="#sobre" class="text-gray-600 hover:text-workera transition-colors">Sobre</a>
+                <a href="#contato" class="text-gray-600 hover:text-workera transition-colors">Contato</a>
+                <a href="#contato" class="bg-workera hover:bg-workera-dark text-white px-6 py-2.5 rounded-full transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">Agendar Limpeza</a>
+            </nav>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden text-gray-700 text-2xl focus:outline-none">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav (Hidden by default) -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white border-b border-gray-100 shadow-md md:hidden">
+            <div class="flex flex-col p-4 space-y-4 text-center font-medium">
+                <a href="#servicos" class="text-gray-600">Serviços</a>
+                <a href="#sobre" class="text-gray-600">Sobre</a>
+                <a href="#contato" class="text-gray-600">Contato</a>
+                <a href="#contato" class="bg-workera text-white px-6 py-3 rounded-md">Agendar Limpeza</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <!-- Background elements -->
+        <div class="absolute inset-0 bg-workera-light opacity-50 z-0"></div>
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-workera rounded-full mix-blend-multiply filter blur-3xl opacity-20 animation-blob"></div>
+
+        <div class="container mx-auto px-6 relative z-10 flex flex-col lg:flex-row items-center gap-12">
+            
+            <!-- Hero Text -->
+            <div class="flex-1 text-center lg:text-left">
+                <span class="text-workera font-semibold tracking-wider uppercase text-sm mb-4 block">Especialistas em Higienização</span>
+                <h1 class="text-4xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+                    Limpeza Profissional com a Agilidade da <span class="text-workera">Workera</span>
+                </h1>
+                <p class="text-lg text-gray-600 mb-8 max-w-xl mx-auto lg:mx-0">
+                    Excelência e rapidez para transformar o seu ambiente. Equipes altamente qualificadas prontas para atender residências e empresas.
+                </p>
+                <!-- Trust indicators -->
+                <div class="flex items-center justify-center lg:justify-start gap-4 text-sm text-gray-500 font-medium">
+                    <span class="flex items-center gap-1"><i class="ph-fill ph-check-circle text-green-500"></i> Agilidade</span>
+                    <span class="flex items-center gap-1"><i class="ph-fill ph-check-circle text-green-500"></i> Confiança</span>
+                    <span class="flex items-center gap-1"><i class="ph-fill ph-check-circle text-green-500"></i> Qualidade</span>
+                </div>
+            </div>
+
+            <!-- Hero Form -->
+            <div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Orçamento Rápido</h3>
+                <p class="text-gray-500 text-sm mb-6">Receba uma cotação em minutos.</p>
+                
+                <form id="lead-form" class="space-y-4">
+                    <div>
+                        <label for="name" class="sr-only">Nome Completo</label>
+                        <input type="text" id="name" placeholder="Nome Completo" required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-workera focus:ring-2 focus:ring-workera/20 transition-all">
+                    </div>
+                    <div>
+                        <label for="phone" class="sr-only">WhatsApp / Telefone</label>
+                        <input type="tel" id="phone" placeholder="WhatsApp / Telefone" required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-workera focus:ring-2 focus:ring-workera/20 transition-all">
+                    </div>
+                    <div>
+                        <label for="service" class="sr-only">Serviço Desejado</label>
+                        <select id="service" required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-workera focus:ring-2 focus:ring-workera/20 transition-all text-gray-600 bg-white">
+                            <option value="">Selecione o serviço...</option>
+                            <option value="residencial">Limpeza Residencial</option>
+                            <option value="comercial">Limpeza Comercial</option>
+                            <option value="pos-obra">Limpeza Pós-Obra</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="w-full bg-workera hover:bg-workera-dark active:scale-95 text-white font-semibold py-3.5 rounded-lg transition-all shadow-md flex justify-center items-center gap-2">
+                        Solicitar Orçamento <i class="ph ph-arrow-right"></i>
+                    </button>
+                    <!-- Success Message placeholder -->
+                    <div id="form-success" class="hidden mt-3 p-3 bg-green-50 text-green-700 rounded-lg text-sm text-center font-medium border border-green-200">
+                        <i class="ph ph-check-circle mr-1"></i> Recebemos sua solicitação!
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos" class="py-24 bg-white relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-workera font-semibold uppercase tracking-wider text-sm">O Que Fazemos</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4 text-gray-900">Soluções Completas de Limpeza</h2>
+                <p class="text-gray-600 text-lg">Independente do tamanho do seu desafio, a Workera possui a equipe e os equipamentos certos para entregar resultados impecáveis.</p>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Card 1 -->
+                <div class="service-card group bg-slate-50 border border-slate-100 rounded-2xl p-8 hover:bg-white hover:shadow-2xl transition-all duration-300">
+                    <div class="w-16 h-16 bg-workera-light text-workera rounded-xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="ph ph-house"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Residencial</h3>
+                    <p class="text-gray-600 mb-6 line-clamp-3">Cuidado excepcional para o seu lar. Deixamos cada cômodo brilhando para que você foque apenas em aproveitar o seu tempo.</p>
+                    <a href="#contato" class="text-workera font-semibold flex items-center gap-1 hover:gap-2 transition-all">Saber mais <i class="ph ph-arrow-right"></i></a>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="service-card group bg-slate-50 border border-slate-100 rounded-2xl p-8 hover:bg-white hover:shadow-2xl transition-all duration-300 relative overflow-hidden">
+                    <!-- Destaque indicator -->
+                    <div class="absolute top-0 right-0 bg-workera text-white text-xs font-bold px-3 py-1 rounded-bl-lg">MAIS BUSCADO</div>
+                    
+                    <div class="w-16 h-16 bg-workera-light text-workera rounded-xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="ph ph-buildings"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Comercial</h3>
+                    <p class="text-gray-600 mb-6 line-clamp-3">Ambientes de trabalho higienizados aumentam a produtividade. Atendemos escritórios, clínicas e lojas com máxima discrição.</p>
+                    <a href="#contato" class="text-workera font-semibold flex items-center gap-1 hover:gap-2 transition-all">Saber mais <i class="ph ph-arrow-right"></i></a>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="service-card group bg-slate-50 border border-slate-100 rounded-2xl p-8 hover:bg-white hover:shadow-2xl transition-all duration-300">
+                    <div class="w-16 h-16 bg-workera-light text-workera rounded-xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="ph ph-wrench"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Pós-Obra</h3>
+                    <p class="text-gray-600 mb-6 line-clamp-3">A obra acabou, mas a sujeira ficou? Nossa limpeza profunda remove poeira grossa, respingos e finaliza o seu projeto.</p>
+                    <a href="#contato" class="text-workera font-semibold flex items-center gap-1 hover:gap-2 transition-all">Saber mais <i class="ph ph-arrow-right"></i></a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Imagem de Equipe (Placeholder for Antigravity insertion) -->
+    <section id="sobre" class="py-20 bg-slate-900 text-white">
+        <div class="container mx-auto px-6 flex flex-col lg:flex-row items-center gap-12">
+            <div class="flex-1">
+                <h2 class="text-3xl font-bold mb-6">Nossa Equipe de Profissionais</h2>
+                <p class="text-slate-300 text-lg mb-6 max-w-xl">
+                    A Workera se orgulha de contar com uma equipe criteriosamente selecionada. Nossos colaboradores são especialistas rigorosamente treinados, e você sempre os reconhecerá pela postura profissional e pelos nossos característicos uniformes brancos.
+                </p>
+                <a href="#contato" class="inline-flex bg-white hover:bg-slate-100 text-slate-900 font-semibold px-6 py-3 rounded-lg transition-colors">Conheça nossos padrões</a>
+            </div>
+            <div class="flex-1 w-full flex justify-center">
+                <!-- Espaço destinado à foto gerada (Equipe Limpeza com Uniforme Branco) -->
+                <div class="w-full max-w-lg aspect-video bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 shadow-2xl relative shadow-workera/20 group cursor-pointer" id="team-photo-container">
+                    <img id="team-photo" src="team_photo.png" alt="Equipe Workera" class="w-full h-full object-cover opacity-100 transition-opacity duration-1000">
+                    <!-- Fallback removido -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contato" class="bg-white border-t border-gray-100 pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <!-- Branding -->
+                <div class="col-span-1 md:col-span-1">
+                    <a href="#" class="text-2xl font-bold tracking-tighter text-workera-dark flex items-center gap-2 mb-4">
+                        <i class="ph ph-sparkle text-workera"></i> Workera
+                    </a>
+                    <p class="text-gray-500 text-sm mb-6">Elevando o padrão de limpeza em cada serviço entregue.</p>
+                    <div class="flex space-x-4 text-gray-400">
+                        <a href="#" class="hover:text-workera transition-colors text-xl"><i class="ph-fill ph-instagram-logo"></i></a>
+                        <a href="#" class="hover:text-workera transition-colors text-xl"><i class="ph-fill ph-facebook-logo"></i></a>
+                        <a href="#" class="hover:text-workera transition-colors text-xl"><i class="ph-fill ph-linkedin-logo"></i></a>
+                    </div>
+                </div>
+
+                <!-- Contato -->
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">Fale Conosco</h4>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li class="flex items-start gap-2"><i class="ph ph-whatsapp text-lg text-green-500"></i> (11) 99999-9999</li>
+                        <li class="flex items-start gap-2"><i class="ph ph-envelope-simple text-lg text-workera"></i> contato@workera.com.br</li>
+                        <li class="flex items-start gap-2"><i class="ph ph-map-pin text-lg text-gray-400"></i> Av. Limpeza, 1234 - SP</li>
+                    </ul>
+                </div>
+
+                <!-- Links -->
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">Links Rápidos</h4>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="#servicos" class="hover:text-workera transition-colors">Nossos Serviços</a></li>
+                        <li><a href="#sobre" class="hover:text-workera transition-colors">Sobre a Empresa</a></li>
+                        <li><a href="#" class="hover:text-workera transition-colors">Trabalhe Conosco</a></li>
+                        <li><a href="#" class="hover:text-workera transition-colors">Política de Privacidade</a></li>
+                    </ul>
+                </div>
+
+                <!-- CNPJ -->
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">Empresa</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed bg-slate-50 p-4 rounded-lg border border-slate-100">
+                        Workera Limpeza Profissional LTDA<br>
+                        CNPJ: 12.345.678/0001-90<br><br>
+                        Garantia de conformidade e segurança em todas as operações.
+                    </p>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400">
+                <p>&copy; 2026 Workera. Todos os direitos reservados.</p>
+                <p class="mt-2 md:mt-0 flex items-center gap-1">Desenvolvido com <i class="ph-fill ph-heart text-red-400"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
